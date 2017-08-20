@@ -8,7 +8,7 @@ namespace HatchSquatCalculator.Controllers
     {
         public IActionResult Index()
         {
-            // test
+            // test connextion to gitlab
             return View();
         }
 
