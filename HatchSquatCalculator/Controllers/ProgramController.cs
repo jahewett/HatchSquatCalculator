@@ -12,7 +12,12 @@ namespace HatchSquatCalculator.Controllers
 
         public IActionResult Calculate(ProgramBaseline baseline)
         {
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                return Ok();
+            }
+
+            return View("Calculator");
         }
     }
 }

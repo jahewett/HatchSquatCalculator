@@ -1,7 +1,76 @@
-﻿@model HatchSquatCalculator.Models.ProgramBaseline
+﻿@using HatchSquatCalculator.Enums
+@model HatchSquatCalculator.Models.ProgramBaseline
 
 @{
     ViewData["Title"] = "Hatch Squat Program";
 }
 
-<h2>Hatch Squat Calculator</h2>
+
+
+<form asp-controller="Program" asp-action="Calculate">
+    <div class="form-horizontal">
+        <h2>Hatch Squat Calculator</h2>
+        <hr/>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Email" class="form-control" type="email"/>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="ProgramStartDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ProgramStartDate" class="form-control" type="date" />
+                <span asp-validation-for="ProgramStartDate" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="BackSquatMax" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="BackSquatMax" class="form-control" type="number" />
+                <span asp-validation-for="BackSquatMax" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="FrontSquatMax" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FrontSquatMax" class="form-control" type="number" />
+                <span asp-validation-for="FrontSquatMax" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label asp-for="Units" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <select asp-for="Units" asp-items="Html.GetEnumSelectList<Unit>()" class="form-control">
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" class="btn btn-default" value="Get Program Details" />
+            </div>
+        </div>        
+        
+    </div>
+    
+    
+
+</form>
+
