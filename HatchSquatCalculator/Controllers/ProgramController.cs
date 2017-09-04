@@ -1,4 +1,5 @@
 ﻿using HatchSquatCalculator.Models;
+using HatchSquatCalculator.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HatchSquatCalculator.Controllers
@@ -14,7 +15,11 @@ namespace HatchSquatCalculator.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Ok();
+                // Use hatch calculator service to calculate program details and return view with model 
+                var calc = new HatchSquatService();
+                var details = calc.GetProgramDetails(baseline);
+
+                return View("Details", details);
             }
 
             return View("Calculator");
