@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HatchSquatCalculator.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -45,6 +46,8 @@ namespace HatchSquatCalculator
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            DocumentDBRepository<Models.HatchProgramTemplate>.Initialize();
         }
     }
 }

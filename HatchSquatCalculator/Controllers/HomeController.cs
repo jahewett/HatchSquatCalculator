@@ -1,14 +1,24 @@
-﻿using HatchSquatCalculator.Models;
+﻿using System.Collections.Generic;
+using HatchSquatCalculator.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using HatchSquatCalculator.Services;
 
 namespace HatchSquatCalculator.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private static bool startup = true;
+
+        public async Task<IActionResult> Index()
         {
-            // test connextion to gitlab
+            if (startup)
+            {
+                await new HatchSquatService().AddTemplate();
+                startup = false;
+            }
+          
             return View();
         }
 
