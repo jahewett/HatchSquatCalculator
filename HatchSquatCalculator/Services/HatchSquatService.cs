@@ -8,6 +8,8 @@ namespace HatchSquatCalculator.Services
         public ProgramDetails GetProgramDetails(ProgramBaseline baseline)
         {
             // Call into db to retrieve program template
+            var template = new HatchProgramTemplate();
+
             // Apply template to baseline
             // Return Program Details
 
