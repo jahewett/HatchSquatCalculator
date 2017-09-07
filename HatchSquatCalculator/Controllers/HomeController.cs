@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using HatchSquatCalculator.Models;
+﻿using HatchSquatCalculator.Models;
+using HatchSquatCalculator.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using HatchSquatCalculator.Services;
 
 namespace HatchSquatCalculator.Controllers
 {

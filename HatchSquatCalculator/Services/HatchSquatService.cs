@@ -1,6 +1,7 @@
 ﻿using HatchSquatCalculator.Models;
-using System;
-using System.Collections.Generic;
+using Newtonsoft.Json;
+using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace HatchSquatCalculator.Services
@@ -20,44 +21,25 @@ namespace HatchSquatCalculator.Services
 
         public async Task AddTemplate()
         {
-            // Load template from csv file
-            // Import to azure document db
-            await DocumentDBRepository<HatchProgramTemplate>.CreateItemAsync(new HatchProgramTemplate
+            // Query for existing hatch template
+            var exists = await DocumentDBRepository<HatchProgramTemplate>.GetItemsAsync(programTemplate
+                => programTemplate.TemplateName == "Hatch Squat Program");
+
+            if (!exists.Any())
             {
-                TemplateName = "Hatch Squat Program",
-                ProgramTemplate = new List<ProgramWeek>
-                {
-                    new ProgramWeek
-                    {
-                        ProgramDays = new List<ProgramDay>
-                        {
-                            new ProgramDay
-                            {
-                                Lifts = new List<Lift>
-                                {
-                                    new Lift
-                                    {
-                                        Name = "Back Squat",
-                                        SetDetails = new List<SetDetail>
-                                        {
-                                            new SetDetail
-                                            {
-                                                Percentage = 60,
-                                                Reps = 10
-                                            },
-                                            new SetDetail
-                                            {
-                                                Percentage = 65,
-                                                Reps = 8
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            });
+                var template = LoadTemplateFromJsonFile();
+                await DocumentDBRepository<HatchProgramTemplate>.CreateItemAsync(template);
+            }
+        }
+
+        public HatchProgramTemplate LoadTemplateFromJsonFile()
+        {
+            using (StreamReader r = new StreamReader("hatchsquattemplate.json"))
+            {
+                string json = r.ReadToEnd();
+                var template = JsonConvert.DeserializeObject<HatchProgramTemplate>(json);
+                return template;
+            }
         }
     }
 }

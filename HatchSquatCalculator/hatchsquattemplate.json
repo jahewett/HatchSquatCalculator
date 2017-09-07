@@ -1,0 +1,134 @@
+{
+    "TemplateName": "Hatch Squat Program",
+    "ProgramTemplate": [
+        {
+            "WeekId": "Week 1",
+            "ProgramDays": [
+                {
+                    "DayId": "Day 1",
+                    "Lifts": [
+                        {
+                            "Name": "Back Squat",
+                            "SetDetails": [
+                                {
+                                    "Reps": 10,
+                                    "Percentage": 60
+                                },
+                                {
+                                    "Reps": 8,
+                                    "Percentage": 70
+                                },
+                                {
+                                    "Reps": 6,
+                                    "Percentage": 75
+                                },
+                                {
+                                    "Reps": 4,
+                                    "Percentage": 80
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "Front Squat",
+                            "SetDetails": [
+                                {
+                                    "Reps": 5,
+                                    "Percentage": 60
+                                },
+                                {
+                                    "Reps": 5,
+                                    "Percentage": 70
+                                },
+                                {
+                                    "Reps": 5,
+                                    "Percentage": 70
+                                },
+                                {
+                                    "Reps": 5,
+                                    "Percentage": 70
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "DayId": "Day 2",
+                    "Lifts": [
+                        {
+                            "Name": "Back Squat",
+                            "SetDetails": [
+                                {
+                                    "Reps": 10,
+                                    "Percentage": 60
+                                },
+                                {
+                                    "Reps": 8,
+                                    "Percentage": 65
+                                },
+                                {
+                                    "Reps": 8,
+                                    "Percentage": 70
+                                },
+                                {
+                                    "Reps": 8,
+                                    "Percentage": 75
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "Front Squat",
+                            "SetDetails": [
+                                {
+                                    "Reps": 5,
+                                    "Percentage": 60
+                                },
+                                {
+                                    "Reps": 5,
+                                    "Percentage": 65
+                                },
+                                {
+                                    "Reps": 5,
+                                    "Percentage": 70
+                                },
+                                {
+                                    "Reps": 5,
+                                    "Percentage": 70
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "WeekId": "Week 2",
+            "ProgramDays": [
+                {
+                    "Lifts": [
+                        {
+                            "Name": "Back Squat",
+                            "SetDetails": [
+                                {
+                                    "Reps": 10,
+                                    "Percentage": 60
+                                },
+                                {
+                                    "Reps": 8,
+                                    "Percentage": 70
+                                },
+                                {
+                                    "Reps": 6,
+                                    "Percentage": 75
+                                },
+                                {
+                                    "Reps": 4,
+                                    "Percentage": 80
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
