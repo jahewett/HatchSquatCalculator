@@ -8,38 +8,48 @@ namespace HatchSquatCalculator.Services
 {
     public class HatchSquatService : IProgramCalculator
     {
-        public ProgramDetails GetProgramDetails(ProgramBaseline baseline)
+        public async Task<ProgramDetails> GetProgramDetails(ProgramBaseline baseline)
         {
-            // Call into db to retrieve program template
-            var template = new HatchProgramTemplate();
+            // Get program template
+            var templates = await DocumentDBRepository<HatchProgramTemplate>.GetItemsAsync(programTemplate => programTemplate.TemplateName == "Hatch Squat Program");
 
             // Apply template to baseline
-            // Return Program Details
-
-            return new ProgramDetails();
+            var programDetails = CalculateProgramDetails(templates.FirstOrDefault(), baseline);
+            
+            return programDetails;
         }
 
         public async Task AddTemplate()
         {
             // Query for existing hatch template
-            var exists = await DocumentDBRepository<HatchProgramTemplate>.GetItemsAsync(programTemplate
+            var templates = await DocumentDBRepository<HatchProgramTemplate>.GetItemsAsync(programTemplate
                 => programTemplate.TemplateName == "Hatch Squat Program");
 
-            if (!exists.Any())
+            if (!templates.Any())
             {
                 var template = LoadTemplateFromJsonFile();
                 await DocumentDBRepository<HatchProgramTemplate>.CreateItemAsync(template);
             }
         }
 
-        public HatchProgramTemplate LoadTemplateFromJsonFile()
+        private static HatchProgramTemplate LoadTemplateFromJsonFile()
         {
-            using (StreamReader r = new StreamReader("hatchsquattemplate.json"))
+            using (var streamReader = new StreamReader("hatchsquattemplate.json"))
             {
-                string json = r.ReadToEnd();
+                var json = streamReader.ReadToEnd();
                 var template = JsonConvert.DeserializeObject<HatchProgramTemplate>(json);
                 return template;
             }
+        }
+
+        private static ProgramDetails CalculateProgramDetails(HatchProgramTemplate template, ProgramBaseline baseline)
+        {
+            var details = new ProgramDetails();
+            details.SetProgramStartDate(baseline.ProgramStartDate);
+            details.SetProgramEndDate();
+            details.CalculateProgramDetails(baseline, template);
+
+            return details;
         }
     }
 }

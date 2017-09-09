@@ -12,19 +12,19 @@
                             "SetDetails": [
                                 {
                                     "Reps": 10,
-                                    "Percentage": 60
+                                    "Percentage": 0.6
                                 },
                                 {
                                     "Reps": 8,
-                                    "Percentage": 70
+                                    "Percentage": 0.7
                                 },
                                 {
                                     "Reps": 6,
-                                    "Percentage": 75
+                                    "Percentage": 0.75
                                 },
                                 {
                                     "Reps": 4,
-                                    "Percentage": 80
+                                    "Percentage": 0.8
                                 }
                             ]
                         },
@@ -33,19 +33,19 @@
                             "SetDetails": [
                                 {
                                     "Reps": 5,
-                                    "Percentage": 60
+                                    "Percentage": 0.6
                                 },
                                 {
                                     "Reps": 5,
-                                    "Percentage": 70
+                                    "Percentage": 0.7
                                 },
                                 {
                                     "Reps": 5,
-                                    "Percentage": 70
+                                    "Percentage": 0.7
                                 },
                                 {
                                     "Reps": 5,
-                                    "Percentage": 70
+                                    "Percentage": 0.7
                                 }
                             ]
                         }
@@ -59,19 +59,19 @@
                             "SetDetails": [
                                 {
                                     "Reps": 10,
-                                    "Percentage": 60
+                                    "Percentage": 0.6
                                 },
                                 {
                                     "Reps": 8,
-                                    "Percentage": 65
+                                    "Percentage": 0.65
                                 },
                                 {
                                     "Reps": 8,
-                                    "Percentage": 70
+                                    "Percentage": 0.7
                                 },
                                 {
                                     "Reps": 8,
-                                    "Percentage": 75
+                                    "Percentage": 0.75
                                 }
                             ]
                         },
@@ -80,19 +80,19 @@
                             "SetDetails": [
                                 {
                                     "Reps": 5,
-                                    "Percentage": 60
+                                    "Percentage": 0.6
                                 },
                                 {
                                     "Reps": 5,
-                                    "Percentage": 65
+                                    "Percentage": 0.65
                                 },
                                 {
                                     "Reps": 5,
-                                    "Percentage": 70
+                                    "Percentage": 0.7
                                 },
                                 {
                                     "Reps": 5,
-                                    "Percentage": 70
+                                    "Percentage": 0.7
                                 }
                             ]
                         }
@@ -110,19 +110,19 @@
                             "SetDetails": [
                                 {
                                     "Reps": 10,
-                                    "Percentage": 60
+                                    "Percentage": 0.6
                                 },
                                 {
                                     "Reps": 8,
-                                    "Percentage": 70
+                                    "Percentage": 0.7
                                 },
                                 {
                                     "Reps": 6,
-                                    "Percentage": 75
+                                    "Percentage": 0.75
                                 },
                                 {
                                     "Reps": 4,
-                                    "Percentage": 80
+                                    "Percentage": 0.8
                                 }
                             ]
                         }
