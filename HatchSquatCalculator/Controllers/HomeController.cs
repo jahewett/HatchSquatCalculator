@@ -8,16 +8,24 @@ namespace HatchSquatCalculator.Controllers
 {
     public class HomeController : Controller
     {
-        private static bool startup = true;
+        private static bool _startup = true;
+        private readonly IProgramCalculator _programCalculator;
+
+        public HomeController(IProgramCalculator programCalculator)
+        {
+            _programCalculator = programCalculator;
+        }
 
         public async Task<IActionResult> Index()
         {
-            if (startup)
+            if (!_startup)
             {
-                await new HatchSquatService().AddTemplate();
-                startup = false;
+                return View();
             }
-          
+
+            await _programCalculator.AddProgramTemplate();
+            _startup = false;
+
             return View();
         }
 

@@ -1,12 +1,18 @@
-﻿using System.Threading.Tasks;
-using HatchSquatCalculator.Models;
+﻿using HatchSquatCalculator.Models;
 using HatchSquatCalculator.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace HatchSquatCalculator.Controllers
 {
     public class ProgramController : Controller
     {
+        private readonly IProgramCalculator _programCalculator;
+
+        public ProgramController(IProgramCalculator programCalculator)
+        {
+            _programCalculator = programCalculator;
+        }
         public IActionResult Calculator()
         {
             return View();
@@ -16,11 +22,9 @@ namespace HatchSquatCalculator.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Use hatch calculator service to calculate program details and return view with model 
-                var calc = new HatchSquatService();
-                var details = await calc.GetProgramDetails(baseline);
+                var programDetails = await _programCalculator.GetProgramDetails(baseline);
 
-                return View("Details", details);
+                return View("Details", programDetails);
             }
 
             return View("Calculator");

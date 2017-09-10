@@ -1,4 +1,5 @@
-﻿using HatchSquatCalculator.Models;
+﻿using System;
+using HatchSquatCalculator.Models;
 using Newtonsoft.Json;
 using System.IO;
 using System.Linq;
@@ -8,22 +9,35 @@ namespace HatchSquatCalculator.Services
 {
     public class HatchSquatService : IProgramCalculator
     {
+        private readonly IProgramDetails _programDetails;
+        private const string TemplateName = "Hatch Squat Program";
+        private const string TemplateFileName = "hatchsquattemplate.json";
+
+        public HatchSquatService(IProgramDetails programDetails)
+        {
+            _programDetails = programDetails;
+        }
+
         public async Task<ProgramDetails> GetProgramDetails(ProgramBaseline baseline)
         {
-            // Get program template
-            var templates = await DocumentDBRepository<HatchProgramTemplate>.GetItemsAsync(programTemplate => programTemplate.TemplateName == "Hatch Squat Program");
+            if (baseline == null)
+            {
+                throw new ArgumentNullException(nameof(baseline));
+            }
 
-            // Apply template to baseline
+            var templates = await DocumentDBRepository<HatchProgramTemplate>.GetItemsAsync(
+                programTemplate => programTemplate.TemplateName == TemplateName);
+
             var programDetails = CalculateProgramDetails(templates.FirstOrDefault(), baseline);
             
             return programDetails;
         }
 
-        public async Task AddTemplate()
+        public async Task AddProgramTemplate()
         {
-            // Query for existing hatch template
-            var templates = await DocumentDBRepository<HatchProgramTemplate>.GetItemsAsync(programTemplate
-                => programTemplate.TemplateName == "Hatch Squat Program");
+            // If program template does not exist in document database, add it from file
+            var templates = await DocumentDBRepository<HatchProgramTemplate>.GetItemsAsync(
+                programTemplate => programTemplate.TemplateName == TemplateName);
 
             if (!templates.Any())
             {
@@ -34,7 +48,8 @@ namespace HatchSquatCalculator.Services
 
         private static HatchProgramTemplate LoadTemplateFromJsonFile()
         {
-            using (var streamReader = new StreamReader("hatchsquattemplate.json"))
+            // todo catch file does not exist exception
+            using (var streamReader = new StreamReader(TemplateFileName))
             {
                 var json = streamReader.ReadToEnd();
                 var template = JsonConvert.DeserializeObject<HatchProgramTemplate>(json);
@@ -42,14 +57,19 @@ namespace HatchSquatCalculator.Services
             }
         }
 
-        private static ProgramDetails CalculateProgramDetails(HatchProgramTemplate template, ProgramBaseline baseline)
+        private ProgramDetails CalculateProgramDetails(HatchProgramTemplate template, ProgramBaseline baseline)
         {
-            var details = new ProgramDetails();
-            details.SetProgramStartDate(baseline.ProgramStartDate);
-            details.SetProgramEndDate();
-            details.CalculateProgramDetails(baseline, template);
+            if (template == null)
+            {
+                throw new ArgumentNullException(nameof(template));
+            }
 
-            return details;
+            if (baseline == null)
+            {
+                throw new ArgumentNullException(nameof(baseline));
+            }
+
+            return _programDetails.CreateProgramDetails(template, baseline);
         }
     }
 }
