@@ -3,8 +3,27 @@
     ViewBag.Title = "Program Details";
 }
 
-<h2>Program Details</h2>
-
-<p>@Model.Program.TemplateName</p>
+<h2>@Model.Program.TemplateName Details</h2>
+<p>Name: @Model.ProgramName</p>
+<p>Program Start Date: @Model.ProgramStartDate</p>
+<p>Program End Date: @Model.ProgramEndDate</p>
+@foreach (var week in Model.Program.ProgramTemplate)
+{
+    <p>@week.WeekId</p>
+    foreach (var day in week.ProgramDays)
+    {
+        <p>@day.DayId</p>
+        foreach (var lift in day.Lifts)
+        {
+            <p>@lift.LiftName.ToString()</p>
+            foreach (var setDetail in lift.SetDetails)
+            {
+                <p>@setDetail.Reps at @setDetail.Weight </p>
+            }
+        }
+    }
+    <br/>
+    <hr/>
+}
 
 
